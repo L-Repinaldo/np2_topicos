@@ -11,11 +11,11 @@ import io.swagger.v3.oas.annotations.info.Info;
         info = @Info(
                 title = "Documentacao API - TEPW 2025.2",
                 version = "1.0",
-                description = "DOCUMENTACAO DA API CONSTRUIDA EM SALA",
+                description = "Biblioteca virtual",
                 contact = @Contact(
-                        name = "JOELITON",
+                        name = "Joéliton",
                         email = "joeliton001@gmail.com",
-                        url = "https://www.exemplo.com")
+                        url = "https://lattes.cnpq.br/5684649300959949")
         )
 )
 
