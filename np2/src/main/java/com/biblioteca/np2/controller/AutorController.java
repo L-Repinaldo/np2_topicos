@@ -3,6 +3,7 @@ package com.biblioteca.np2.controller;
 import com.biblioteca.np2.domain.dto.Autor.AutorDto;
 import com.biblioteca.np2.domain.dto.Autor.AutorLowDto;
 import com.biblioteca.np2.service.AutorService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/autor")
+@Tag(name = "Autores", description = "API para gerenciamento de autores")
 public class AutorController {
 
     @Autowired

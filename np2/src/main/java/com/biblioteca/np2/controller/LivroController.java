@@ -3,6 +3,7 @@ package com.biblioteca.np2.controller;
 import com.biblioteca.np2.domain.dto.Livro.LivroDto;
 import com.biblioteca.np2.domain.dto.Livro.LivroLowDto;
 import com.biblioteca.np2.service.LivroService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/livro")
+@Tag(name = "Livros", description = "API para gerenciamento de livros da biblioteca")
 public class LivroController {
 
     @Autowired
