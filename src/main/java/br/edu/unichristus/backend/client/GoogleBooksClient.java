@@ -1,6 +1,6 @@
 package br.edu.unichristus.backend.client;
 
-import br.edu.unichristus.backend.domain.model.book.BookDTO;
+import br.edu.unichristus.backend.books.dto.BookDTO;
 import br.edu.unichristus.backend.exception.ApiException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;

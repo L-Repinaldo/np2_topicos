@@ -1,6 +1,6 @@
 package br.edu.unichristus.backend.client;
 
-import br.edu.unichristus.backend.domain.model.book.BookDTO;
+import br.edu.unichristus.backend.books.dto.BookDTO;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,6 +1,7 @@
 package br.edu.unichristus.backend.service;
 
-import br.edu.unichristus.backend.domain.model.book.BookDTO;
+import br.edu.unichristus.backend.books.dto.BookDTO;
+import br.edu.unichristus.backend.books.service.BookService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -26,7 +27,7 @@ class BookServiceTest {
         Integer limit = 3;
         
         // Act
-        List<BookDTO> books = bookService.getBooks(query, limit);
+        List<BookDTO> books = bookService.searchGoogleBooks(query, limit);
         
         // Assert
         assertNotNull(books);
@@ -52,7 +53,7 @@ class BookServiceTest {
         Integer limit = null;
         
         // Act
-        List<BookDTO> books = bookService.getBooks(query, limit);
+        List<BookDTO> books = bookService.searchGoogleBooks(query, limit);
         
         // Assert
         assertNotNull(books);
@@ -68,10 +69,10 @@ class BookServiceTest {
         
         // Act & Assert
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            bookService.getBooks(query, 5);
+            bookService.searchGoogleBooks(query, 5);
         });
         
-        assertEquals("termo de busca não pode estar vazio", exception.getMessage());
+        assertEquals("O termo de busca não pode estar vazio", exception.getMessage());
         System.out.println("Teste de validação de query vazia passou!");
     }
     
@@ -82,10 +83,10 @@ class BookServiceTest {
         
         // Act & Assert
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
-            bookService.getBooks(query, 5);
+            bookService.searchGoogleBooks(query, 5);
         });
         
-        assertEquals("termo de busca não pode estar vazio", exception.getMessage());
+        assertEquals("O termo de busca não pode estar vazio", exception.getMessage());
         System.out.println("Teste de validação de query nula passou!");
     }
 }
