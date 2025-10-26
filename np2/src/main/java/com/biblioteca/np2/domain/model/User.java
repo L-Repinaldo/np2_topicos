@@ -7,19 +7,28 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
+@Entity
+@Table(name = "tb_user")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "tb_autor")
-@Entity
-public class Autor {
+public class User {
 
     @Id
-    @GeneratedValue(strategy =  GenerationType.IDENTITY)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @Column(name = "nome", nullable = false, unique = true, length = 100)
-    private String nome;
+    @Column(nullable = false, length = 100)
+    private String name;
+    
+    @Column(length = 150)
+    private String email;
+
+    @Column(unique = true, length = 50)
+    private String login;
+    
+    @Column(length = 255)
+    private String password;
 
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
@@ -38,14 +47,5 @@ public class Autor {
         updatedAt = LocalDateTime.now();
     }
 }
-
-
-
-
-
-
-
-
-
 
 

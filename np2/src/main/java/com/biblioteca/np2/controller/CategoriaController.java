@@ -3,6 +3,7 @@ package com.biblioteca.np2.controller;
 import com.biblioteca.np2.domain.dto.Categoria.CategoriaDto;
 import com.biblioteca.np2.domain.dto.Categoria.CategoriaLowDto;
 import com.biblioteca.np2.service.CategoriaService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/categoria")
+@Tag(name = "Categorias", description = "API para gerenciamento de categorias")
 public class CategoriaController {
 
     @Autowired
