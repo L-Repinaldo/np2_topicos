@@ -2,7 +2,9 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
-      <profile default="true" name="Default" enabled="true" />
+      <profile default="true" name="Default" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+      </profile>
       <profile name="Annotation profile for np2" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
@@ -13,9 +15,13 @@
         <module name="np2" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="backend" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="backend" options="-parameters" />
       <module name="np2" options="-parameters" />
     </option>
   </component>

@@ -1,6 +1,5 @@
 package com.biblioteca.np2.domain.model;
 
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,13 +8,14 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.LocalDateTime;
-
+import java.util.ArrayList;
+import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "tb_livros")
+@Table(name = "tb_artigos")
 @Entity
-public class Livro {
+public class Artigo {
 
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
@@ -24,13 +24,11 @@ public class Livro {
     @Column(name = "titulo", nullable = false, unique = true, length = 150)
     private String titulo;
 
-    @Column(name = "isbn", nullable = false, unique = true, length = 13)
-    private String isbn;
+    @OneToMany(mappedBy = "artigo", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Autoria> autorias = new ArrayList<>();
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "id_autor", nullable = false, referencedColumnName = "id")
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private Autor autor;
+    private List<String> autores;
+
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_editora", nullable = false, referencedColumnName = "id")
@@ -41,7 +39,6 @@ public class Livro {
     @JoinColumn(name = "id_categoria", nullable = false, referencedColumnName = "id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Categoria categoria;
-
 
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
@@ -59,5 +56,6 @@ public class Livro {
     protected void onUpdate() {
         updatedAt = LocalDateTime.now();
     }
+
 
 }

@@ -3,6 +3,7 @@ package com.biblioteca.np2.service;
 
 import com.biblioteca.np2.domain.dto.Categoria.CategoriaDto;
 import com.biblioteca.np2.domain.dto.Categoria.CategoriaLowDto;
+import com.biblioteca.np2.domain.dto.Obras;
 import com.biblioteca.np2.domain.model.Categoria;
 import com.biblioteca.np2.excepiton.ApiException;
 import com.biblioteca.np2.repository.CategoriaRepository;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -18,6 +20,12 @@ public class CategoriaService {
 
     @Autowired
     private CategoriaRepository repository;
+
+    @Autowired
+    private LivroService livroService;
+
+    @Autowired
+    private ArtigoService artigoService;
 
     //#### CRUD Básico ####
 
@@ -86,5 +94,22 @@ public class CategoriaService {
         return MapperUtil.parseObject(categoria, Categoria.class);
     }
 
+    public List<? extends Obras> getLivrosByCategoria(String categoria){
+        return livroService.findLivrosByCategoria(categoria);
+    }
+
+    public List<? extends Obras> getArtigosByCategoria(String categoria){
+        return artigoService.findArtigosByCategoria(categoria);
+    }
+
+    public ArrayList<Object> getObrasByCategoria(String categoria){
+
+        var obras = new ArrayList<>();
+
+        obras.add(getLivrosByCategoria(categoria));
+        obras.add(getArtigosByCategoria(categoria));
+
+        return obras;
+    }
 
 }

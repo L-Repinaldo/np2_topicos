@@ -2,6 +2,7 @@ package com.biblioteca.np2.service;
 
 import com.biblioteca.np2.domain.dto.Autor.AutorDto;
 import com.biblioteca.np2.domain.dto.Autor.AutorLowDto;
+import com.biblioteca.np2.domain.dto.Obras;
 import com.biblioteca.np2.domain.model.Autor;
 import com.biblioteca.np2.excepiton.ApiException;
 import com.biblioteca.np2.repository.AutorRepository;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -17,6 +19,12 @@ public class AutorService {
 
     @Autowired
     private AutorRepository repository;
+
+    @Autowired
+    private LivroService livroService;
+
+    @Autowired
+    private ArtigoService artigoService;
 
     //##### CRUD Básico ####//
 
@@ -87,6 +95,23 @@ public class AutorService {
 
         return MapperUtil.parseObject(autor, Autor.class);
 
+    }
+
+    public List<? extends Obras> getLivrosPorAutor(String nome){
+        return livroService.findLivrosByAutor(nome);
+    }
+
+    public List<? extends Obras> getArtigosPorAutor(String nome){
+        return artigoService.findArtigosByAutor(nome);
+    }
+    
+    public List<Object> getObrasPorAutor(String nome){
+
+        var obras = new ArrayList<>();
+        obras.add(getLivrosPorAutor(nome));
+        obras.add(getArtigosPorAutor(nome));
+
+        return obras;
     }
 
 

@@ -2,6 +2,7 @@ package com.biblioteca.np2.controller;
 
 import com.biblioteca.np2.domain.dto.Autor.AutorDto;
 import com.biblioteca.np2.domain.dto.Autor.AutorLowDto;
+import com.biblioteca.np2.domain.dto.Obras;
 import com.biblioteca.np2.service.AutorService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,4 +32,16 @@ public class AutorController {
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable(name = "id") Integer id){ service.deleteAutorById(id);}
+
+    // #### Métodos API ####
+
+    @GetMapping("/{nome}/livros")
+    public List<? extends Obras> getLivrosByAutor(@PathVariable(name = "nome") String nome){return service.getLivrosPorAutor(nome);}
+
+    @GetMapping("/{nome}/artigos")
+    public List<? extends Obras> getArtigosByAutor(@PathVariable(name = "nome") String nome){return service.getArtigosPorAutor(nome);}
+
+    @GetMapping("/{nome}/obras")
+    public List<Object> getObrasByAutor(@PathVariable(name = "nome") String nome){return service.getObrasPorAutor(nome);}
+
 }

@@ -3,6 +3,7 @@ package com.biblioteca.np2.service;
 
 import com.biblioteca.np2.domain.dto.Editora.EditoraDto;
 import com.biblioteca.np2.domain.dto.Editora.EditoraLowDto;
+import com.biblioteca.np2.domain.dto.Obras;
 import com.biblioteca.np2.domain.model.Editora;
 import com.biblioteca.np2.excepiton.ApiException;
 import com.biblioteca.np2.repository.EditoraRepository;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -18,6 +20,12 @@ public class EditoraService {
 
     @Autowired
     private EditoraRepository repository;
+
+    @Autowired
+    private LivroService livroService;
+
+    @Autowired
+    private ArtigoService artigoService;
 
     //#### CRUD Básico ####
 
@@ -85,6 +93,23 @@ public class EditoraService {
 
         return MapperUtil.parseObject(editora, Editora.class);
     }
+
+    public List<? extends Obras> getLivrosByEditora(String editora){
+        return livroService.findLivrosByEditora(editora);
+    }
+
+    public List<? extends Obras> getArtigosByEditora(String editora){
+        return artigoService.findArtigosByEditora(editora);
+    }
+
+    public ArrayList<Object> getObrasByEditora(String editora){
+        var obras = new ArrayList<>();
+        obras.add(getLivrosByEditora(editora));
+        obras.add(getArtigosByEditora(editora));
+
+        return obras;
+    }
+
 
 
 }

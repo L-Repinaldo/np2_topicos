@@ -8,6 +8,7 @@ import com.biblioteca.np2.excepiton.ApiException;
 import com.biblioteca.np2.repository.LivroRepository;
 import com.biblioteca.np2.util.MapperUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -20,12 +21,15 @@ public class LivroService {
     private LivroRepository repository;
 
     @Autowired
+    @Lazy
     private AutorService autorService;
 
     @Autowired
+    @Lazy
     private CategoriaService categoriaService;
 
     @Autowired
+    @Lazy
     private EditoraService editoraService;
 
     //#### CRUD Básico####
@@ -105,5 +109,19 @@ public class LivroService {
 
     }
 
+    public List<LivroLowDto> findLivrosByAutor(String nome_autor){
+
+        return MapperUtil.parseListObject(repository.getLivrosByAutor(nome_autor.toLowerCase()), LivroLowDto.class);
+    }
+
+    public List<LivroLowDto> findLivrosByCategoria(String nome_categoria){
+
+        return MapperUtil.parseListObject(repository.getLivrosByCategoria(nome_categoria.toLowerCase()), LivroLowDto.class);
+    }
+
+    public List<LivroLowDto> findLivrosByEditora(String nome_editora){
+
+        return MapperUtil.parseListObject(repository.getLivrosByEditora(nome_editora.toLowerCase()), LivroLowDto.class);
+    }
 
 }

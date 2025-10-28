@@ -2,11 +2,13 @@ package com.biblioteca.np2.controller;
 
 import com.biblioteca.np2.domain.dto.Categoria.CategoriaDto;
 import com.biblioteca.np2.domain.dto.Categoria.CategoriaLowDto;
+import com.biblioteca.np2.domain.dto.Obras;
 import com.biblioteca.np2.service.CategoriaService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -31,4 +33,15 @@ public class CategoriaController {
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable(name = "id") Integer id){service.deleteCategoriaById(id);}
+
+    // #### Métodos API ####
+
+    @GetMapping("/{nome}/livros")
+    public List<? extends Obras> getLivrosByCategoria(@PathVariable(name = "nome") String nome){return service.getLivrosByCategoria(nome);}
+
+    @GetMapping("/{nome}/artigos")
+    public List<? extends Obras> getArtigosByCategoria(@PathVariable(name = "nome") String nome){return service.getArtigosByCategoria(nome);}
+
+    @GetMapping("/{nome}/obras")
+    public ArrayList<Object> getObrasByCategoria(@PathVariable(name = "nome") String nome){return service.getObrasByCategoria(nome);}
 }

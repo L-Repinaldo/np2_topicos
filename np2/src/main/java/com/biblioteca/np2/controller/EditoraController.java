@@ -2,11 +2,13 @@ package com.biblioteca.np2.controller;
 
 import com.biblioteca.np2.domain.dto.Editora.EditoraDto;
 import com.biblioteca.np2.domain.dto.Editora.EditoraLowDto;
+import com.biblioteca.np2.domain.dto.Obras;
 import com.biblioteca.np2.service.EditoraService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -31,5 +33,17 @@ public class EditoraController {
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable(name = "id") Integer id){service.deleteEditoraById(id);}
+
+
+    // #### Métodos API ####
+
+    @GetMapping("/{nome}/livros")
+    public List<? extends Obras> getLivrosByEditora(@PathVariable(name = "nome") String nome){return service.getLivrosByEditora(nome);}
+
+    @GetMapping("/{nome}/artigos")
+    public List<? extends Obras> getArtigosByCategoria(@PathVariable(name = "nome") String nome){return service.getArtigosByEditora(nome);}
+
+    @GetMapping("/{nome}/obras")
+    public ArrayList<Object> getObrasByCategoria(@PathVariable(name = "nome") String nome){return service.getObrasByEditora(nome);}
 
 }
