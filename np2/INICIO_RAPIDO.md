@@ -2,7 +2,28 @@
 
 ## 🎯 Para Executar em 5 Minutos
 
-### 1️⃣ Criar o Banco de Dados
+### 🚀 Opção 1: Executar com Script Automático (RECOMENDADO)
+
+```bash
+cd np2
+./run.sh
+```
+
+Este script irá:
+- ✅ Verificar se o PostgreSQL está rodando
+- ✅ Criar o banco de dados automaticamente
+- ✅ Configurar variáveis de ambiente
+- ✅ Verificar se a porta 8085 está livre
+- ✅ Iniciar o projeto
+
+**Com senha customizada:**
+```bash
+./run-with-password.sh sua_senha
+```
+
+---
+
+### 1️⃣ Criar o Banco de Dados (se não usar o script)
 ```bash
 psql -U postgres
 CREATE DATABASE biblioteca_np2;
