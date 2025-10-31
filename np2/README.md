@@ -221,5 +221,4 @@ Projeto acadêmico - UniChristus 2025.2
 
 ---
 
-**Desenvolvido com ❤️ pela equipe NP2**
 
