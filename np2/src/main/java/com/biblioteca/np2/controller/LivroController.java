@@ -64,4 +64,23 @@ public class LivroController {
     public void delete(@PathVariable(name = "id") Integer id){
         service.deleteLivroById(id);
     }
+
+
+    //#### Métodos API ####
+
+    @Operation(summary = "Lista todos livros cadastrados pertencentes a esse autor")
+    @ApiResponse(responseCode = "200", description = "Lista de livros retornada com sucesso")
+    @GetMapping("/autor/{nome_autor}")
+    public List<LivroLowDto> findLivrosByAutor(@PathVariable(name = "nome_autor") String nome_autor){ return service.findLivrosByAutor(nome_autor);}
+
+    @Operation(summary = "Lista todos livros cadastrados pertencentes a essa editora")
+    @ApiResponse(responseCode = "200", description = "Lista de livros retornada com sucesso")
+    @GetMapping("/editora/{nome_editora}")
+    public List<LivroLowDto> findLivrosByEditora(@PathVariable(name = "nome_editora") String nome_editora){ return service.findLivrosByEditora(nome_editora);}
+
+    @Operation(summary = "Lista todos livros cadastrados pertencentes a essa categoria")
+    @ApiResponse(responseCode = "200", description = "Lista de livros retornada com sucesso")
+    @GetMapping("/categoria/{nome_categoria}")
+    public List<LivroLowDto> findLivrosByCategoria(@PathVariable(name = "nome_categoria") String nome_categoria){ return service.findLivrosByCategoria(nome_categoria);}
+
 }

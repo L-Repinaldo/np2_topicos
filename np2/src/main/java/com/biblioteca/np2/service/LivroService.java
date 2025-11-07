@@ -109,6 +109,9 @@ public class LivroService {
 
     }
 
+    //#### Métodos API ####
+
+
     public List<LivroLowDto> findLivrosByAutor(String nome_autor){
 
         return MapperUtil.parseListObject(repository.getLivrosByAutor(nome_autor.toLowerCase()), LivroLowDto.class);

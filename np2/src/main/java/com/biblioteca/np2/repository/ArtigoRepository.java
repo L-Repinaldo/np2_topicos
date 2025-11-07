@@ -11,7 +11,7 @@ public interface ArtigoRepository extends JpaRepository<Artigo, Integer> {
     @Query("SELECT artigos FROM Artigo artigos WHERE LOWER(artigos.editora.nome) = (:nome)")
     List<Artigo> getArtigosByEditora(String nome);
 
-    @Query("SELECT artigos FROM Artigo artigos WHERE (artigos.categoria.nome) = (:nome)")
+    @Query("SELECT artigos FROM Artigo artigos WHERE LOWER(artigos.categoria.nome) = (:nome)")
     List<Artigo> getArtigosByCategoria(String nome);
 
 }

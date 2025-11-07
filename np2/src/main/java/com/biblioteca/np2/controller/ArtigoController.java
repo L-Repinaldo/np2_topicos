@@ -64,4 +64,22 @@ public class ArtigoController {
     public void delete(@PathVariable(name = "id") Integer id){
         service.deleteArtigoById(id);
     }
+
+    //#### Métodos API ####
+
+
+    @Operation(summary = "Lista todos os artigos cadastrados pertencentes a esse autor")
+    @ApiResponse(responseCode = "200", description = "Lista de artigos retornada com sucesso")
+    @GetMapping("/autor/{nome}")
+    public List<ArtigoLowDto> getArtigosByAutor(@PathVariable(name = "nome") String nome){return service.findArtigosByAutor(nome);}
+
+    @Operation(summary = "Lista todos os artigos cadastrados pertencentes a essa editora")
+    @ApiResponse(responseCode = "200", description = "Lista de artigos retornada com sucesso")
+    @GetMapping("/editora/{nome}")
+    public List<ArtigoLowDto> getArtigosByEditora(@PathVariable(name = "nome") String nome){return service.findArtigosByEditora(nome);}
+
+    @Operation(summary = "Lista todos os artigos cadastrados pertencentes a essa categoria")
+    @ApiResponse(responseCode = "200", description = "Lista de artigos retornada com sucesso")
+    @GetMapping("/categoria/{nome}")
+    public List<ArtigoLowDto> getArtigosByCategoria(@PathVariable(name = "nome") String nome){return service.findArtigosByCategoria(nome);}
 }
